@@ -1,15 +1,21 @@
 import React,{useContext} from 'react';
-import {View,Text,StyleSheet} from 'react-native';
+import {View,Text,StyleSheet,FlatList} from 'react-native';
 import BlogContext from './context/BlogContext';
 
 
 const IndexScreen = ()=>{
 
-    const value=useContext(BlogContext);
+    const blogPosts=useContext(BlogContext);
 
 return (<View>
     <Text>Screen Priview</Text>
-    <Text>{value}</Text>
+    <FlatList
+    data={blogPosts}
+    keyExtractor={(blogPost)=>blogPost.title}
+    renderItem={({item})=>{
+        return <Text>{item.title}</Text>
+    }}
+    />
 </View>);
 };
 
