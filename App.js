@@ -12,8 +12,12 @@ const navigator = createStackNavigator(
     initialRouteName: 'Index',
     defaultNavigationOptions: {
       title: 'Blogs',
+      headerTitleStyle:{
+        textAlign:'center'
+      },
+      },
     },
-  }
+  
 );
 
 const App = createAppContainer(navigator);

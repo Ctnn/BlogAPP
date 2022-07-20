@@ -17,13 +17,18 @@ return (<View>
          data={data}
          keyExtractor={(blogPost)=>blogPost.title}
          renderItem={({item})=>{
-            return <Text>{item.title}</Text>
+            return <Text style={styles.text}>{item.title}</Text>
     }}
     />
 </View>);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    text:{
+    textAlign:'center'
+    },
+
+});
 
 export default IndexScreen;
 
