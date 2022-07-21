@@ -7,8 +7,10 @@ const BlogReducer=(state,action)=>{
   
   switch(action.type)
     {
+      case 'delete_blogpost':
+        return state.filter((blogPost)=>blogPost.id!=action.payload);
       case 'add_blogpost':
-        return [...state,{title:`Blog Post #${state.length+1}`}];
+        return [...state,{id:Math.floor(Math.random()*9999), title:`Blog Post #${state.length+1}`}];
             // ... Mean take all the current blog posts we have and add them into the new array
       default:
         return state;
@@ -16,13 +18,17 @@ const BlogReducer=(state,action)=>{
 };
 
 const addBlogPost = dispatch => {
-  return () => {
-    dispatch({ type: 'add_blogpost' });
+  return (id) => {
+    dispatch({ type: 'add_blogpost'});
   };
 };
 
+const deleteBlogPost = dispatch=>{
+  return id=>dispatch({type:'delete_blogpost',payload:id});
+}
+
 export const { Context, Provider } = createDataContext(
   BlogReducer,
-  { addBlogPost },
+  { addBlogPost,deleteBlogPost},
   []
 );
